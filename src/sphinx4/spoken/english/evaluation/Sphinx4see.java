@@ -1,13 +1,6 @@
 /*
- * Copyright 1999-2004 Carnegie Mellon University.
- * Portions Copyright 2004 Sun Microsystems, Inc.
- * Portions Copyright 2004 Mitsubishi Electric Research Laboratories.
- * All Rights Reserved.  Use is subject to license terms.
- *
- * See the file "license.terms" for information on usage and
- * redistribution of this file, and for a DISCLAIMER OF ALL
- * WARRANTIES.
- *
+ * Author: shen zhun
+ * Date: 6/8/2013
  */
 
 package sphinx4.spoken.english.evaluation;
@@ -17,12 +10,11 @@ import edu.cmu.sphinx.recognizer.Recognizer;
 import edu.cmu.sphinx.result.Result;
 import edu.cmu.sphinx.util.props.ConfigurationManager;
 
-
 /**
- * A simple HelloWorld demo showing a simple speech application built using Sphinx-4. This application uses the Sphinx-4
+ * A simple Sphinx4see demo showing a simple speech application built using Sphinx-4. This application uses the Sphinx-4
  * endpointer, which automatically segments incoming audio into utterances and silences.
  */
-public class HelloWorld {
+public class Sphinx4see {
 
     public static void main(String[] args) {
         ConfigurationManager cm;
@@ -30,7 +22,7 @@ public class HelloWorld {
         if (args.length > 0) {
             cm = new ConfigurationManager(args[0]);
         } else {
-            cm = new ConfigurationManager(HelloWorld.class.getResource("helloworld.config.xml"));
+            cm = new ConfigurationManager(Sphinx4see.class.getResource("sphinx4see.config.xml"));
         }
 
         Recognizer recognizer = (Recognizer) cm.lookup("recognizer");
