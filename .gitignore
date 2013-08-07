@@ -4,3 +4,7 @@
 *.jar
 *.war
 *.ear
+/sphinx4-spoken-english-evaluation/nbproject/private/
+/sphinx4-spoken-english-evaluation/build/
+/sphinx4-spoken-english-evaluation/dist/
+/dist/
