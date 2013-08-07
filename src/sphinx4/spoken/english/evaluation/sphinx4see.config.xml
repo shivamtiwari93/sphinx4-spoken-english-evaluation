@@ -96,7 +96,7 @@
         <property name="dictionary" value="dictionary"/>
         <property name="grammarLocation"
              value="resource:/sphinx4/spoken/english/evaluation/"/>
-        <property name="grammarName" value="hello"/>
+        <property name="grammarName" value="sphinx4see"/>
 	<property name="logMath" value="logMath"/>
     </component>
 
