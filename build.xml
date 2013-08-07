@@ -1,74 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- You may freely edit this file. See commented blocks below for -->
-<!-- some examples of how to customize the build. -->
-<!-- (If you delete it and reopen the project it will be recreated.) -->
-<!-- By default, only the Clean and Build commands use this build script. -->
-<!-- Commands such as Run, Debug, and Test only use this build script if -->
-<!-- the Compile on Save feature is turned off for the project. -->
-<!-- You can turn off the Compile on Save (or Deploy on Save) setting -->
-<!-- in the project's Project Properties dialog box.-->
-<project name="sphinx4-spoken-english-evaluation" default="default" basedir=".">
-    <description>Builds, tests, and runs the project sphinx4-spoken-english-evaluation.</description>
-    <import file="nbproject/build-impl.xml"/>
-    <!--
+<!-- ant file for sphinx4 project -->
+<!-- includes="sphinx4/spoken/english/evaluation/**" -->
 
-    There exist several targets which are by default empty and which can be 
-    used for execution of your tasks. These targets are usually executed 
-    before and after some main targets. They are: 
+<project name="sphinx4-spoken-english-evaluation" default="run" basedir=".">
+	    <description>Builds, tests, and runs the project sphinx4-spoken-english-evaluation.</description>
+	    <property name="src_dir" value="src"/>
+            <property name="build_dir" value="bld"/>
+            <property name="classes_dir" value="${build_dir}"/>
+            <property name="lib_dir" value="lib"/>
+            <property name="bin_dir" value="bin"/>
 
-      -pre-init:                 called before initialization of project properties
-      -post-init:                called after initialization of project properties
-      -pre-compile:              called before javac compilation
-      -post-compile:             called after javac compilation
-      -pre-compile-single:       called before javac compilation of single file
-      -post-compile-single:      called after javac compilation of single file
-      -pre-compile-test:         called before javac compilation of JUnit tests
-      -post-compile-test:        called after javac compilation of JUnit tests
-      -pre-compile-test-single:  called before javac compilation of single JUnit test
-      -post-compile-test-single: called after javac compilation of single JUunit test
-      -pre-jar:                  called before JAR building
-      -post-jar:                 called after JAR building
-      -post-clean:               called after cleaning build products
+            <path id="libs">
+                  <pathelement path="${classes_dir}"/>
+                  <pathelement location="${lib_dir}/sphinx4.jar"/>
+                  <pathelement location="${lib_dir}/jsapi.jar"/>
+                  <pathelement location="${lib_dir}/tags.jar"/>
+                  <pathelement location="${lib_dir}/js.jar"/>
+                  <pathelement location="${lib_dir}/junit-4.4.jar"/>
+            </path>
 
-    (Targets beginning with '-' are not intended to be called on their own.)
+            <path id="jar.classpath">
+                  <pathelement path="${basedir}/${bin_dir}/Sphinx4see.jar"/>
+            </path>
+            
+	    <target name="init">
+		    <mkdir dir="${build_dir}"/>
+            </target>
 
-    Example of inserting an obfuscator after compilation could look like this:
+	    <target name="compile" depends="init">
+                    <javac debug="true"
+                           listfiles="true"
+                           includeantruntime="false"
+                           srcdir="${src_dir}"
+                           destdir="${classes_dir}"
+                           includes="sphinx4/spoken/english/evaluation/**">
+                           <classpath refid="libs"/>
+                    </javac>
+	    </target>
+            
+	    <target name="build" depends="compile">
+                    <mkdir dir="${bin_dir}"/>
+                    <copy file="${src_dir}/sphinx4/spoken/english/evaluation/sphinx4see.config.xml"
+                          todir="${classes_dir}/sphinx4/spoken/english/evaluation/"/>
+                    <copy file="${src_dir}/sphinx4/spoken/english/evaluation/sphinx4see.gram"
+                          todir="${classes_dir}/sphinx4/spoken/english/evaluation/"/>
+                    <jar destfile="${bin_dir}/Sphinx4see.jar"
+                         manifest="${src_dir}/sphinx4/spoken/english/evaluation/sphinx4see.Manifest"
+                         basedir="${classes_dir}"
+                         includes="sphinx4/spoken/english/evaluation/**"
+                         compress="true"/>
+            </target>
 
-        <target name="-post-compile">
-            <obfuscate>
-                <fileset dir="${build.classes.dir}"/>
-            </obfuscate>
-        </target>
+	    <target name="run" depends="build">
+                    <java jar="${bin_dir}/Sphinx4see.jar" fork="True"/>
+            </target> 
 
-    For list of available properties check the imported 
-    nbproject/build-impl.xml file. 
-
-
-    Another way to customize the build is by overriding existing main targets.
-    The targets of interest are: 
-
-      -init-macrodef-javac:     defines macro for javac compilation
-      -init-macrodef-junit:     defines macro for junit execution
-      -init-macrodef-debug:     defines macro for class debugging
-      -init-macrodef-java:      defines macro for class execution
-      -do-jar-with-manifest:    JAR building (if you are using a manifest)
-      -do-jar-without-manifest: JAR building (if you are not using a manifest)
-      run:                      execution of project 
-      -javadoc-build:           Javadoc generation
-      test-report:              JUnit report generation
-
-    An example of overriding the target for project execution could look like this:
-
-        <target name="run" depends="sphinx4-spoken-english-evaluation-impl.jar">
-            <exec dir="bin" executable="launcher.exe">
-                <arg file="${dist.jar}"/>
-            </exec>
-        </target>
-
-    Notice that the overridden target depends on the jar target and not only on 
-    the compile target as the regular run target does. Again, for a list of available 
-    properties which you can use, check the target you are overriding in the
-    nbproject/build-impl.xml file. 
-
-    -->
+            <target name="clean" depends="run">
+                    <delete dir="${build_dir}"/>
+                    <delete dir="${bin_dir}"/>
+            </target>
 </project>
