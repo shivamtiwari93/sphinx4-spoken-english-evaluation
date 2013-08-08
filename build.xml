@@ -42,7 +42,7 @@
                     <mkdir dir="${bin_dir}"/>
                     <copy file="${src_dir}/sphinx4/spoken/english/evaluation/sphinx4see.config.xml"
                           todir="${classes_dir}/sphinx4/spoken/english/evaluation/"/>
-                    <copy file="${src_dir}/sphinx4/spoken/english/evaluation/sphinx4see.gram"
+                    <copy file="${src_dir}/sphinx4/spoken/english/evaluation/sphinx4see.trigram.lm"
                           todir="${classes_dir}/sphinx4/spoken/english/evaluation/"/>
                     <jar destfile="${bin_dir}/Sphinx4see.jar"
                          manifest="${src_dir}/sphinx4/spoken/english/evaluation/sphinx4see.Manifest"
