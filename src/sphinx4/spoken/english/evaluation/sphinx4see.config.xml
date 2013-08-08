@@ -66,6 +66,7 @@
         <property name="relativeBeamWidth" value="${relativeBeamWidth}"/>
     </component>
     
+    
     <!-- ******************************************************** -->
     <!-- The Active Lists                                         -->
     <!-- ******************************************************** --> 
@@ -75,6 +76,9 @@
         <propertylist name="activeListFactories">
 	    <item>standardActiveListFactory</item>
 	    <item>wordActiveListFactory</item>
+	    <item>wordActiveListFactory</item>
+	    <item>standardActiveListFactory</item>
+	    <item>standardActiveListFactory</item>
 	    <item>standardActiveListFactory</item>
 	</propertylist>
     </component>
@@ -130,6 +134,7 @@
         <property name="unitManager" value="unitManager"/>
     </component>    
     
+    
     <!-- ******************************************************** -->
     <!-- The Dictionary configuration                            -->
     <!-- ******************************************************** -->
@@ -151,12 +156,13 @@
     <component name="trigramModel" 
         type="edu.cmu.sphinx.linguist.language.ngram.SimpleNGramModel">
         <property name="location" 
-            value="resource:/edu/cmu/sphinx/demo/hellongram/hellongram.trigram.lm"/>
+		value="resource:/sphinx4/spoken/english/evaluation/sphinx4see.trigram.lm"/>
         <property name="logMath" value="logMath"/>
         <property name="dictionary" value="dictionary"/>
         <property name="maxDepth" value="3"/>
         <property name="unigramWeight" value=".7"/>
     </component>
+    
     
     <!-- ******************************************************** -->
     <!-- The acoustic model configuration                         -->
@@ -296,6 +302,7 @@
                 type="edu.cmu.sphinx.instrumentation.ConfigMonitor">
         <property name="showConfig" value="false"/>
     </component>
+    
     
     <!-- ******************************************************* -->
     <!--  Miscellaneous components                               -->
