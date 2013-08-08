@@ -24,7 +24,9 @@ public class Sphinx4see {
         } else {
             cm = new ConfigurationManager(Sphinx4see.class.getResource("sphinx4see.config.xml"));
         }
-
+        
+        // allocate the recognizer
+	System.out.println("Loading...");
         Recognizer recognizer = (Recognizer) cm.lookup("recognizer");
         recognizer.allocate();
 
@@ -35,8 +37,8 @@ public class Sphinx4see {
             recognizer.deallocate();
             System.exit(1);
         }
-
-        System.out.println("Say: (Good morning | Hello) ( Bhiksha | Evandro | Paul | Philip | Rita | Will )");
+        
+	printInstructions():
 
         // loop the recognition until the programm exits.
         while (true) {
@@ -52,4 +54,16 @@ public class Sphinx4see {
             }
         }
     }
+    
+
+    /** Prints out what to say for this demo. */
+    private static void printInstructions() {
+	    System.out.println("Sample sentences:\n" +
+                    "the green one right in the middle\n" +
+		    "the purple one on the lower right side\n" +
+		    "the closest purple one on the far left side\n" +
+		    "the only one left on the left\n\n" +
+		    "Refer to the file hellogram.test for a complete list.\n");
+   }
+}
 }
