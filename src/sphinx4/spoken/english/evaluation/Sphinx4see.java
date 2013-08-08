@@ -38,7 +38,7 @@ public class Sphinx4see {
             System.exit(1);
         }
         
-	printInstructions():
+	printInstructions();
 
         // loop the recognition until the programm exits.
         while (true) {
@@ -65,5 +65,4 @@ public class Sphinx4see {
 		    "the only one left on the left\n\n" +
 		    "Refer to the file hellogram.test for a complete list.\n");
    }
-}
 }
