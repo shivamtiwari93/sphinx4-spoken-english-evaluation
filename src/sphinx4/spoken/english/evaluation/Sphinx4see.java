@@ -48,7 +48,11 @@ public class Sphinx4see {
 
             if (result != null) {
                 String resultText = result.getBestFinalResultNoFiller();
+
                 System.out.println("You said: " + resultText + '\n');
+		if(resultText == "alone"){
+                  System.out.println("Do not be afraid, baby!");}
+
             } else {
                 System.out.println("I can't hear what you said.\n");
             }
